@@ -36,7 +36,7 @@ module OpenAIApi
         name: "temperature",
         types: %w[float integer],
         required: false,
-        description: "The temperature for the model. Higher values means the model will take more risks. Try 0.9 for more creative applications, and 0 (argmax sampling) for ones with a well-defined answer. The default is 0.5. We generally recommend altering this or top_p but not both."
+        description: "Defaults to 1. What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or top_p but not both."
       },
       {
         name: "top_p",

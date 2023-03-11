@@ -9,6 +9,7 @@ module OpenAIApi
 end
 
 require_relative "openai_api/base"
+require_relative "openai_api/chat"
 require_relative "openai_api/completion"
 require_relative "openai_api/edit"
 require_relative "openai_api/model"
