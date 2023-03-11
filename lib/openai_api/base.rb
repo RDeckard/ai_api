@@ -23,8 +23,8 @@ module OpenAIApi
 
     attr_reader :responses
 
-    def self.call(api_key: nil, **options_and_api_params)
-      new(api_key:).call(**options_and_api_params)
+    def self.call(*args, api_key: nil, **options_and_api_params)
+      new(api_key:).call(*args, **options_and_api_params)
     end
 
     def initialize(api_key: nil, **api_params)
