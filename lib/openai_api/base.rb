@@ -36,7 +36,8 @@ module OpenAIApi
     end
 
     def call(complete_response: false, **params)
-      @responses << result = __send__(api_verb, @api_params.merge(params))
+      @api_params.merge!(params)
+      @responses << result = __send__(api_verb)
 
       if !complete_response && result.success? && defined?(self.class::RESPONSE_DIGGER)
         result.formatted_response
@@ -47,29 +48,29 @@ module OpenAIApi
 
     private
 
-    def get(api_params)
-      dynamic_api_path, api_query = dynamic_path_and_query(api_params)
+    def get
+      dynamic_api_path, api_query = dynamic_path_and_query
 
       self.class
-          .get(dynamic_api_path, headers:, query: api_query.to_json)
-          .extend(OpenAIApi::Response.new(request_params: api_params, response_digger:))
+          .get(dynamic_api_path, headers:, query: JSON.generate(api_query, allow_nan: true))
+          .extend(OpenAIApi::Response.new(request_params: @api_params, response_digger:))
     end
 
-    def post(api_params)
+    def post
       self.class
-          .post(api_path, headers:, body: api_params.to_json)
-          .tap { result_extender.call(_1, api_params) }
+          .post(api_path, headers:, body: JSON.generate(@api_params, allow_nan: true))
+          .tap { result_extender.call(_1, @api_params) }
     end
 
     def api_path
       @api_path ||= self.class::API_PATH
     end
 
-    def dynamic_path_and_query(api_params)
+    def dynamic_path_and_query
       dynamic_path = api_path.dup
-      query = api_params.dup
+      query = @api_params.dup
 
-      api_params.each do |key, value|
+      @api_params.each do |key, value|
         dynamic_path.gsub!(":#{key}", value.to_s) && query.delete(key)
       end
       dynamic_path.gsub!(/:[\w_]+/, "")
