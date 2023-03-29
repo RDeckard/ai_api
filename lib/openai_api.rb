@@ -5,6 +5,7 @@ require "httparty"
 require_relative "openai_api/version"
 
 module OpenAIApi
+  DEFAULT_TIMEOUT = 60
   Error = Class.new(StandardError)
 end
 

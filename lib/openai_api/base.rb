@@ -23,12 +23,13 @@ module OpenAIApi
 
     attr_reader :responses
 
-    def self.call(*args, api_key: nil, **options_and_api_params)
-      new(api_key:).call(*args, **options_and_api_params)
+    def self.call(*args, api_key: nil, timeout: nil, **options_and_api_params)
+      new(api_key:, timeout:).call(*args, **options_and_api_params)
     end
 
-    def initialize(api_key: nil, **api_params)
+    def initialize(api_key: nil, timeout: nil, **api_params)
       @api_key = api_key || ENV.fetch("OPENAI_API_KEY")
+      @timeout = timeout || ENV.fetch("OPENAI_API_TIMEOUT", DEFAULT_TIMEOUT).to_i
 
       @api_params = default_api_params.merge!(api_params)
 
@@ -52,14 +53,22 @@ module OpenAIApi
       dynamic_api_path, api_query = dynamic_path_and_query
 
       self.class
-          .get(dynamic_api_path, headers:, query: JSON.generate(api_query, allow_nan: true))
-          .extend(OpenAIApi::Response.new(request_params: @api_params, response_digger:))
+          .get(
+            dynamic_api_path,
+            headers:,
+            query: JSON.generate(api_query, allow_nan: true),
+            timeout: @timeout
+          ).extend(OpenAIApi::Response.new(request_params: @api_params, response_digger:))
     end
 
     def post
       self.class
-          .post(api_path, headers:, body: JSON.generate(@api_params, allow_nan: true))
-          .tap { result_extender.call(_1, @api_params) }
+          .post(
+            api_path,
+            headers:,
+            body: JSON.generate(@api_params, allow_nan: true),
+            timeout: @timeout
+          ).tap { result_extender.call(_1, @api_params) }
     end
 
     def api_path
