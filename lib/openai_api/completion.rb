@@ -16,7 +16,7 @@ module OpenAIApi
       },
       {
         name: "prompt",
-        types: %w[string array],
+        types: %w[array string],
         required: false,
         description: "The prompt to use as a starting point for the completion. If you pass an array, the API will concatenate the elements together. If you don't include a prompt, the API will start with an empty string."
       },
@@ -70,7 +70,7 @@ module OpenAIApi
       },
       {
         name: "stop",
-        types: %w[string array],
+        types: %w[array string],
         required: false,
         description: "Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence."
       },

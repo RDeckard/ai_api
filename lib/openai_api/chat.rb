@@ -46,7 +46,7 @@ module OpenAIApi
       },
       {
         name: "stop",
-        types: %w[string array],
+        types: %w[array string],
         required: false,
         description: "Defaults to null. Up to 4 sequences where the API will stop generating further tokens."
       },
