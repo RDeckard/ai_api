@@ -18,3 +18,6 @@ require_relative "ai_api/openai/completion"
 require_relative "ai_api/openai/edit"
 require_relative "ai_api/openai/embedding"
 require_relative "ai_api/openai/model"
+
+require_relative "ai_api/anthropic/base"
+require_relative "ai_api/anthropic/complete"

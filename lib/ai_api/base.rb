@@ -26,7 +26,7 @@ module AIApi
     end
 
     def initialize(api_key: nil, timeout: nil, **api_params)
-      @api_key = api_key || self.class::API_KEY
+      @api_key = api_key || self.class::API_KEY_FETCHER.call
       @timeout = timeout || ENV.fetch("AI_API_TIMEOUT", DEFAULT_TIMEOUT)
 
       @api_params = default_api_params.merge!(api_params)

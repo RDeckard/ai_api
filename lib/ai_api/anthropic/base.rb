@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 module AIApi
-  module OpenAI
+  module Anthropic
     class Base < AIApi::Base
-      base_uri "https://api.openai.com"
+      base_uri "https://api.anthropic.com"
 
-      API_KEY_FETCHER = -> { ENV.fetch("OPENAI_API_KEY") }
+      API_KEY_FETCHER = -> { ENV.fetch("ANTHROPIC_API_KEY") }
 
       def headers_contructor(api_key)
         {
           "Content-Type" => "application/json",
-          "Authorization" => "Bearer #{api_key}"
+          "x-api-key" => api_key
         }
       end
     end
