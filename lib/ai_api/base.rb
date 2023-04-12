@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-module OpenAIApi
+module AIApi
   class Base
     include HTTParty
-    base_uri "https://api.openai.com"
-
     API_VERB = "get"
     API_PARAMS = {}.freeze
 
@@ -28,8 +26,8 @@ module OpenAIApi
     end
 
     def initialize(api_key: nil, timeout: nil, **api_params)
-      @api_key = api_key || ENV.fetch("OPENAI_API_KEY")
-      @timeout = timeout || ENV.fetch("OPENAI_API_TIMEOUT", DEFAULT_TIMEOUT).to_i
+      @api_key = api_key || self.class::API_KEY
+      @timeout = timeout || ENV.fetch("AI_API_TIMEOUT", DEFAULT_TIMEOUT)
 
       @api_params = default_api_params.merge!(api_params)
 
@@ -58,7 +56,7 @@ module OpenAIApi
             headers:,
             query: JSON.generate(api_query, allow_nan: true),
             timeout: @timeout
-          ).extend(OpenAIApi::Response.new(request_params: @api_params, response_digger:))
+          ).extend(AIApi::Response.new(request_params: @api_params, response_digger:))
     end
 
     def post
@@ -89,10 +87,11 @@ module OpenAIApi
     end
 
     def headers
-      @headers ||= {
-        "Content-Type" => "application/json",
-        "Authorization" => "Bearer #{@api_key}"
-      }
+      @headers ||= headers_contructor(@api_key)
+    end
+
+    def headers_contructor(*)
+      raise NotImplementedError
     end
 
     def response_digger
@@ -103,7 +102,7 @@ module OpenAIApi
 
     def result_extender
       lambda do |api_response, request_params|
-        api_response.extend(OpenAIApi::Response.new(request_params:, response_digger:))
+        api_response.extend(AIApi::Response.new(request_params:, response_digger:))
       end
     end
   end

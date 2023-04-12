@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    openai_api (0.1.0)
+    ai_api (0.1.0)
       httparty (~> 0.20)
 
 GEM
@@ -66,9 +66,9 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  ai_api!
   dotenv
   httparty
-  openai_api!
   rake
   rspec
   rubocop
@@ -80,4 +80,4 @@ RUBY VERSION
    ruby 3.2.1p31
 
 BUNDLED WITH
-   2.4.9
+   2.4.12

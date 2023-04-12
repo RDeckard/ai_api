@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module OpenAIApi
+module AIApi
   class Response < Module
     def initialize(request_params: nil, response_digger: nil)
       super()

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe OpenAIApi do
+RSpec.describe AIApi do
   it "has a version number" do
-    expect(OpenAIApi::VERSION).not_to be_nil
+    expect(AIApi::VERSION).not_to be_nil
   end
 
   it "does something useful" do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "openai_api"
+require "ai_api"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
