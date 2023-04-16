@@ -32,8 +32,8 @@ module AIApi
 
       RESPONSE_DIGGER = proc { _1.dig("data", 0, "embedding") }
 
-      def call(messages = [], **options_and_api_params)
-        super(messages:, **options_and_api_params)
+      def call(input = [], **options_and_api_params)
+        super(input:, **options_and_api_params)
       end
     end
   end
