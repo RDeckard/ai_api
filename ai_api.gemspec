@@ -5,7 +5,7 @@ require_relative "lib/ai_api/version"
 Gem::Specification.new do |spec|
   spec.name = "ai_api"
   spec.version = AIApi::VERSION
-  spec.authors = ["Gabriel"]
+  spec.authors = ["RDeckard"]
   spec.email = ["rdeckard.gt@gmail.com"]
 
   spec.summary = "Ruby wrapper for several AI providers' APIs"

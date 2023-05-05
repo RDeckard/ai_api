@@ -85,6 +85,7 @@ module AIApi
       # rubocop:enable Layout/LineLength
 
       RESPONSE_DIGGER = proc { _1.dig("choices", 0, "message", "content").strip }
+      STREAM_FRAGMENT_DIGGER = proc { _1.dig("choices", 0, "delta", "content") }
 
       def call(messages = [], **options_and_api_params)
         super(messages:, **options_and_api_params)

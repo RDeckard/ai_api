@@ -62,6 +62,7 @@ module AIApi
       # rubocop:enable Layout/LineLength
 
       RESPONSE_DIGGER = proc { _1["completion"].strip }
+      STREAM_FRAGMENT_DIGGER = proc { _1["completion"] }
 
       def call(prompt = nil, **options_and_api_params)
         super(prompt:, **options_and_api_params)
