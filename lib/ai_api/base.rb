@@ -107,7 +107,6 @@ module AIApi
             .match(/^data: (.*)$/)
             &.captures
             &.map do |data|
-              # binding.irb if $aze.nil?
               next data.strip if stream_fragment_digger.nil? || @complete_response
 
               stream_fragment_digger.call(JSON.parse(data.strip))

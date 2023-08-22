@@ -9,8 +9,8 @@ module AIApi
 
       def headers_contructor(api_key)
         {
-          "Content-Type" => "application/json",
-          "Authorization" => "Bearer #{api_key}"
+          "content-type" => "application/json",
+          "authorization" => "Bearer #{api_key}"
         }
       end
     end
