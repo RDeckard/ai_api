@@ -2,7 +2,7 @@
 
 module AIApi
   module OpenAI
-    class Completion < Base # rubocop:disable Metrics/ClassLength
+    class Completion < Base
       API_PATH = "/v1/completions"
       API_VERB = "post"
 

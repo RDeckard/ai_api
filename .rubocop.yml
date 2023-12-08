@@ -23,3 +23,10 @@ Style/MultilineBlockChain:
 
 Layout/LineLength:
   Max: 120
+
+Metrics/ClassLength:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false

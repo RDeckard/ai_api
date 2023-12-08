@@ -8,7 +8,7 @@ module AIApi
       @response_digger = response_digger
     end
 
-    def extended(base) # rubocop:disable Metrics/MethodLength
+    def extended(base)
       request_params = @request_params
       response_digger = @response_digger
 
