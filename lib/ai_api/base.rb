@@ -3,6 +3,8 @@
 module AIApi
   class Base
     include HTTParty
+    debug_output $stdout if ENV["AI_API_DEBUG"]
+
     API_VERB = "get"
     API_PARAMS = {}.freeze
 
@@ -38,6 +40,8 @@ module AIApi
     end
 
     def call(**params)
+      @content_type = nil
+
       @api_params.merge!(params)
       @responses << result = __send__(api_verb)
 
@@ -68,7 +72,7 @@ module AIApi
           .post(
             api_path,
             headers:,
-            body: JSON.generate(@api_params, allow_nan: true),
+            body:,
             timeout: @timeout
           ) { |body_fragment| body_fragment_parser(body_fragment).map { @block.call(_1) } unless @block.nil? }
           .tap { result_extender.call(_1, @api_params) }
@@ -97,6 +101,20 @@ module AIApi
 
     def headers_contructor(*)
       raise NotImplementedError
+    end
+
+    def body
+      case content_type
+      when "application/json"
+        JSON.generate(@api_params, allow_nan: true)
+      when "multipart/form-data"
+        @api_params
+      end
+    end
+
+    def content_type
+      @content_type ||=
+        self.class::API_PARAMS.any? { _1[:types].include?("file") } ? "multipart/form-data" : "application/json"
     end
 
     def body_fragment_parser(body_fragment)

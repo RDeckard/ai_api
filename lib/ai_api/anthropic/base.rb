@@ -10,7 +10,7 @@ module AIApi
 
       def headers_contructor(api_key)
         {
-          "content-type" => "application/json",
+          "content-type" => content_type,
           "anthropic-version" => anthropic_version,
           "x-api-key" => api_key
         }

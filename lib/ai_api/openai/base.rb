@@ -9,7 +9,7 @@ module AIApi
 
       def headers_contructor(api_key)
         {
-          "content-type" => "application/json",
+          "content-type" => content_type,
           "authorization" => "Bearer #{api_key}"
         }
       end
