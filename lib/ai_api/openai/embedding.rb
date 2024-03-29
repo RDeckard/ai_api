@@ -12,7 +12,7 @@ module AIApi
           name: "model",
           types: %w[string],
           required: true,
-          default_value: "text-embedding-ada-002",
+          default_value: "text-embedding-3-small",
           description: "ID of the model to use. You can use the Model API to see all of your available models."
         },
         {
