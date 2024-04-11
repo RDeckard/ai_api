@@ -13,20 +13,20 @@ module AIApi
           types: %w[string],
           required: true,
           default_value: "text-embedding-3-small",
-          description: "ID of the model to use. You can use the Model API to see all of your available models."
+          description: "ID of the model to use. You can use the Model API to see all of your available models.",
         },
         {
           name: "input",
           types: %w[array string],
           required: true,
-          description: "Input text to get embeddings for, encoded as a string or array of tokens. To get embeddings for multiple inputs in a single request, pass an array of strings or array of token arrays. Each input must not exceed 8192 tokens in length."
+          description: "Input text to get embeddings for, encoded as a string or array of tokens. To get embeddings for multiple inputs in a single request, pass an array of strings or array of token arrays. Each input must not exceed 8192 tokens in length.",
         },
         {
           name: "user",
           types: %w[string],
           required: false,
-          description: "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse."
-        }
+          description: "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.",
+        },
       ].freeze
       # rubocop:enable Layout/LineLength
 

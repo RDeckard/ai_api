@@ -7,6 +7,11 @@ require:
   - rubocop-rake
   - rubocop-rspec
 
+Layout/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false
 Style/StringLiterals:
   Enabled: true
   EnforcedStyle: double_quotes
@@ -14,19 +19,26 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   Enabled: true
   EnforcedStyle: double_quotes
-
-Style/Documentation:
-  Enabled: false
-
+Style/NumberedParametersLimit:
+  Max: 2
 Style/MultilineBlockChain:
   Enabled: false
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
 
-Layout/LineLength:
-  Max: 120
-
+Metrics/AbcSize:
+  Enabled: false
 Metrics/ClassLength:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/BlockLength:
   Enabled: false
 Metrics/CyclomaticComplexity:
   Enabled: false
-Metrics/MethodLength:
+Metrics/PerceivedComplexity:
   Enabled: false

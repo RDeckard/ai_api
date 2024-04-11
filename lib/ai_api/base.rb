@@ -23,8 +23,8 @@ module AIApi
 
     attr_reader :responses
 
-    def self.call(*args, api_key: nil, timeout: nil, complete_response: false, **options_and_api_params, &)
-      new(api_key:, timeout:, complete_response:, &).call(*args, **options_and_api_params)
+    def self.call(*, api_key: nil, timeout: nil, complete_response: false, **options_and_api_params, &)
+      new(api_key:, timeout:, complete_response:, &).call(*, **options_and_api_params)
     end
 
     def initialize(api_key: nil, timeout: nil, complete_response: false, **api_params, &block)
@@ -62,7 +62,7 @@ module AIApi
             dynamic_api_path,
             headers:,
             query: JSON.generate(api_query, allow_nan: true),
-            timeout: @timeout
+            timeout: @timeout,
           ) { |body_fragment| body_fragment_parser(body_fragment).map { @block.call(_1) } unless @block.nil? }
           .extend(AIApi::Response.new(request_params: @api_params, response_digger:))
     end
@@ -73,7 +73,7 @@ module AIApi
             api_path,
             headers:,
             body:,
-            timeout: @timeout
+            timeout: @timeout,
           ) { |body_fragment| body_fragment_parser(body_fragment).map { @block.call(_1) } unless @block.nil? }
           .tap { result_extender.call(_1, @api_params) }
     end
@@ -128,7 +128,7 @@ module AIApi
               next data.strip if stream_fragment_digger.nil? || @complete_response
 
               stream_fragment_digger.call(JSON.parse(data.strip))
-            rescue JSON::ParserError
+            rescue JSON::ParserError # rubocop:disable Lint/SuppressedException
             end
         end
         .compact

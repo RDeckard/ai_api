@@ -10,8 +10,8 @@ module AIApi
           name: "id",
           types: %w[string],
           required: false,
-          description: "The model ID. If you don't specify an ID, the API returns a list of all your models."
-        }
+          description: "The model ID. If you don't specify an ID, the API returns a list of all your models.",
+        },
       ].freeze
 
       RESPONSE_DIGGER = proc { _1.key?("data") ? _1["data"] : _1 }

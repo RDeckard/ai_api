@@ -12,7 +12,7 @@ module AIApi
         {
           "content-type" => content_type,
           "anthropic-version" => anthropic_version,
-          "x-api-key" => api_key
+          "x-api-key" => api_key,
         }
       end
 
