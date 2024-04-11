@@ -24,3 +24,4 @@ require_relative "ai_api/openai/audio/translation"
 
 require_relative "ai_api/anthropic/base"
 require_relative "ai_api/anthropic/complete"
+require_relative "ai_api/anthropic/message"
