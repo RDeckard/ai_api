@@ -5,7 +5,7 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in ai_api.gemspec
 gemspec
 
-ruby ">= 3.1"
+ruby ">= 3.2"
 
 gem "dotenv", require: false
 gem "httparty"

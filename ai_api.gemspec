@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = "Ruby wrapper for several AI providers' APIs"
   spec.homepage = "https://github.com/RDeckard/ai_api"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.1"
+  spec.required_ruby_version = ">= 3.2"
 
   spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
